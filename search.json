@@ -25,27 +25,6 @@
     "href": "resume.html",
     "title": "Resume",
     "section": "",
-    "text": "(You can either paste your resume content here as formatted text, or link/embed a PDF — e.g. [Download my resume](resume.pdf) after placing resume.pdf in this folder.)"
-  },
-  {
-    "objectID": "resume.html#experience",
-    "href": "resume.html#experience",
-    "title": "Resume",
-    "section": "Experience",
-    "text": "Experience\n\nRole Title, Company — dates\n\nHighlight\nHighlight"
-  },
-  {
-    "objectID": "resume.html#skills",
-    "href": "resume.html#skills",
-    "title": "Resume",
-    "section": "Skills",
-    "text": "Skills\n\nGA4, BigQuery, PyMC, Snowflake"
-  },
-  {
-    "objectID": "resume.html#education",
-    "href": "resume.html#education",
-    "title": "Resume",
-    "section": "Education",
-    "text": "Education\n\nDegree, School — year"
+    "text": "LinkedIn: https://www.linkedin.com/in/prestonrattle/\n\nExperience\n\nGlobal Digital Analytics Manager, Specialized Bikes — 2026 March - Present\n\nGuiding the analytics practice for Global Digital and Specialized more broadly.\n\n\n\n\nSkills\n\nProgramming: Python, R\nSQL: Snowflake, BigQuery, Redshift\nBI: Tableau, Data Studio\nWeb analytics: Google Analytics\nWeb tracking: Google Tag Manager\n\n\n\nEducation\n\nMajor: Business Administration, University of Oregon — 2016\nMajor: French, University of Oregon — 2016\nMinor: English, University of Oregon — 2016"
   }
 ]
