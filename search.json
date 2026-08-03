@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Preston Rattle",
+    "section": "",
+    "text": "Preston Rattle\nAnalytics & Data Science — measurement, modeling, and infrastructure.\n\nWelcome to my site. Use the navigation above to check out my background, resume, or read the first post."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "Hi, I’m Preston. I work in digital analytics and data science, focused on analytics infrastructure, predictive modeling, and causal measurement.\n(Replace this with your own bio, background, and interests.)"
+  },
+  {
+    "objectID": "post1.html",
+    "href": "post1.html",
+    "title": "Post #1",
+    "section": "",
+    "text": "This is your first post. Replace this with real content — code, charts, and analysis all render natively in Quarto.\n\nimport pandas as pd\nprint(\"Hello from Quarto!\")\n\nHello from Quarto!"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "(You can either paste your resume content here as formatted text, or link/embed a PDF — e.g. [Download my resume](resume.pdf) after placing resume.pdf in this folder.)"
+  },
+  {
+    "objectID": "resume.html#experience",
+    "href": "resume.html#experience",
+    "title": "Resume",
+    "section": "Experience",
+    "text": "Experience\n\nRole Title, Company — dates\n\nHighlight\nHighlight"
+  },
+  {
+    "objectID": "resume.html#skills",
+    "href": "resume.html#skills",
+    "title": "Resume",
+    "section": "Skills",
+    "text": "Skills\n\nGA4, BigQuery, PyMC, Snowflake"
+  },
+  {
+    "objectID": "resume.html#education",
+    "href": "resume.html#education",
+    "title": "Resume",
+    "section": "Education",
+    "text": "Education\n\nDegree, School — year"
+  }
+]
