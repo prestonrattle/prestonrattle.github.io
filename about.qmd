@@ -1,0 +1,7 @@
+---
+title: "About Me"
+---
+
+Hi, I'm Preston. I work in digital analytics and data science, focused on analytics infrastructure, predictive modeling, and causal measurement.
+
+*(Replace this with your own bio, background, and interests.)*

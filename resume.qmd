@@ -1,0 +1,19 @@
+---
+title: "Resume"
+---
+
+*(You can either paste your resume content here as formatted text, or link/embed a PDF — e.g. `[Download my resume](resume.pdf)` after placing resume.pdf in this folder.)*
+
+## Experience
+
+- **Role Title**, Company — dates
+  - Highlight
+  - Highlight
+
+## Skills
+
+- GA4, BigQuery, PyMC, Snowflake
+
+## Education
+
+- Degree, School — year

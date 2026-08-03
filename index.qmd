@@ -1,0 +1,11 @@
+---
+title: ""
+---
+
+::: {.hero}
+# Preston Rattle
+
+Analytics & Data Science — measurement, modeling, and infrastructure.
+:::
+
+Welcome to my site. Use the navigation above to check out my background, resume, or read the first post.
