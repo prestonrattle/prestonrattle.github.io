@@ -24,8 +24,17 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install TinyTeX
+        run: quarto install tinytex
+
       - name: Render site
         run: quarto render
+
+      - name: Render resume as PDF
+        run: quarto render resume.qmd --to pdf -o resume.pdf
+
+      - name: Move resume PDF into docs folder
+        run: mv resume.pdf docs/resume.pdf
 
       - name: Publish to GitHub Pages (gh-pages branch)
         uses: peaceiris/actions-gh-pages@v4
