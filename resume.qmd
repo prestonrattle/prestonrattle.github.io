@@ -1,19 +1,27 @@
 ---
 title: "Resume"
+toc: true
+toc-location: left
+toc-title: "Contents"
 ---
 
-*(You can either paste your resume content here as formatted text, or link/embed a PDF — e.g. `[Download my resume](resume.pdf)` after placing resume.pdf in this folder.)*
+LinkedIn: https://www.linkedin.com/in/prestonrattle/
 
-## Experience
+### Experience
 
-- **Role Title**, Company — dates
-  - Highlight
-  - Highlight
+- **Global Digital Analytics Manager**, Specialized Bikes — 2026 March - Present
+  - Guiding the analytics practice for Global Digital and Specialized more broadly.
 
-## Skills
+### Skills
 
-- GA4, BigQuery, PyMC, Snowflake
+- Programming: Python, R
+- SQL: Snowflake, BigQuery, Redshift
+- BI: Tableau, Data Studio
+- Web analytics: Google Analytics
+- Web tracking: Google Tag Manager
 
-## Education
+### Education
 
-- Degree, School — year
+- Major: Business Administration, University of Oregon — 2016
+- Major: French, University of Oregon — 2016
+- Minor: English, University of Oregon — 2016
