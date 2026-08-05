@@ -22,4 +22,6 @@ format:
     toc: false
     page-layout: full
     include-in-header: gtm-head.html
-    include-before-body: gtm-body.html
+    include-before-body:
+      - gtm-datalayer.html
+      - gtm-body.html
