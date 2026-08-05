@@ -132,6 +132,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
 <!-- main -->
 <main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  (function () {
+    var path = window.location.pathname;
+    var pageType;
+
+    if (path === '/' || path.endsWith('/index.html')) {
+      pageType = 'home';
+    } else if (path.includes('about')) {
+      pageType = 'about';
+    } else if (path.includes('resume')) {
+      pageType = 'resume';
+    } else if (path.includes('post')) {
+      pageType = 'post';
+    } else {
+      pageType = 'other';
+    }
+
+    dataLayer.push({
+      'event': 'page_view',
+      'page_type': pageType,
+      'pageTitle': document.title,
+      'pagePath': path
+    });
+  })();
+</script>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPG5TZR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
