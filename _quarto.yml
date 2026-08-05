@@ -23,5 +23,6 @@ format:
     page-layout: full
     include-in-header: gtm-head.html
     include-before-body:
-      - gtm-datalayer.html
+      - gtm-page-view.html
+      - gtm-search-events.html
       - gtm-body.html
