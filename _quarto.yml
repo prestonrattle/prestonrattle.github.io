@@ -21,3 +21,5 @@ format:
     css: styles.css
     toc: false
     page-layout: full
+    include-in-header: gtm-head.html
+    include-before-body: gtm-body.html
