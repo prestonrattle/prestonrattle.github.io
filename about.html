@@ -159,6 +159,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     });
   })();
 </script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  document.addEventListener('click', function (e) {
+
+    // search_start: user clicks the search icon/button that opens the search bar
+    var searchButton = e.target.closest('#quarto-search .aa-DetachedSearchButton');
+    if (searchButton) {
+      dataLayer.push({ 'event': 'search_start' });
+    }
+
+    // search_complete: user clicks a result inside the search results list
+    var resultLink = e.target.closest('.aa-Item a');
+    if (resultLink) {
+      var item = resultLink.closest('.aa-Item');
+      var list = item ? item.closest('.aa-List') : null;
+      var position = null;
+
+      if (list) {
+        var items = Array.prototype.slice.call(list.querySelectorAll('.aa-Item'));
+        position = items.indexOf(item) + 1; // 1-based position
+      }
+
+      var titleEl = item ? item.querySelector('.aa-ItemContentTitle') : null;
+      var resultTitle = titleEl ? titleEl.textContent.trim() : resultLink.textContent.trim();
+
+      var searchInput = document.querySelector('#quarto-search input, .aa-Input');
+      var searchTerm = searchInput ? searchInput.value : '';
+
+      dataLayer.push({
+        'event': 'search_complete',
+        'search_term': searchTerm,
+        'result_position': position,
+        'result_title': resultTitle
+      });
+    }
+
+  });
+</script>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPG5TZR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
