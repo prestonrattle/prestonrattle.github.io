@@ -1,10 +1,13 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - images/
 
 website:
   title: "Preston Rattle"
   navbar:
+    search: true
     left:
       - href: index.qmd
         text: Home
@@ -23,6 +26,6 @@ format:
     page-layout: full
     include-in-header: gtm-head.html
     include-before-body:
-      - gtm-page-view.html
+      - gtm-datalayer.html
       - gtm-search-events.html
       - gtm-body.html
