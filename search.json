@@ -1,19 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Preston Rattle",
-    "section": "",
-    "text": "Preston Rattle\nAnalytics & Data Science — measurement, modeling, and infrastructure.\n\nWelcome to my site. Use the navigation above to check out my background, resume, or read the first post."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About Me",
-    "section": "",
-    "text": "Hi, I’m Preston. I work in digital analytics and data science, focused on analytics infrastructure, predictive modeling, and causal measurement.\n(Replace this with your own bio, background, and interests.)"
-  },
-  {
     "objectID": "post1.html",
     "href": "post1.html",
     "title": "Post #1",
@@ -26,5 +12,19 @@
     "title": "Resume",
     "section": "",
     "text": "LinkedIn: https://www.linkedin.com/in/prestonrattle/ 📄 Download resume PDF\n\nExperience\n\nGlobal Digital Analytics Manager, Specialized Bikes — 2026 March - Present\n\nGuiding the analytics practice for Global Digital and Specialized more broadly.\n\n\n\n\nSkills\n\nProgramming: Python, R\nSQL: Snowflake, BigQuery, Redshift\nBI: Tableau, Data Studio\nWeb analytics: Google Analytics\nWeb tracking: Google Tag Manager\n\n\n\nEducation\n\nMajor: Business Administration, University of Oregon — 2016\nMajor: French, University of Oregon — 2016\nMinor: English, University of Oregon — 2016"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Preston Rattle",
+    "section": "",
+    "text": "Preston Rattle\nAnalytics & Data Science — measurement, modeling, and infrastructure.\n\nWelcome to my site. Use the navigation above to check out my background, resume, or read the first post."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "Hi, I’m Preston. I work in digital analytics and data science, focused on analytics infrastructure, predictive modeling, and causal measurement.\n(Replace this with your own bio, background, and interests.)"
   }
 ]
