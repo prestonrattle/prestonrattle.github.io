@@ -18,7 +18,7 @@ website:
       - text: "Posts"
         menu:
           - href: post1.qmd
-            text: "Post #1"
+            text: "Most Recent Post"
           - href: posts.qmd
             text: "All Posts"
 

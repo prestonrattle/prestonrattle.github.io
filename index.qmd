@@ -8,7 +8,5 @@ title: ""
 ::: {.hero-rule}
 :::
 
-Analytics & Data Science — measurement, modeling, and infrastructure.
+Analytics & Data Science
 :::
-
-Welcome to my site. Use the navigation above to check out my background, resume, or read the first post.

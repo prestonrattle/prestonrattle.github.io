@@ -6,5 +6,15 @@
       toggle.removeAttribute('data-bs-toggle');
       toggle.removeAttribute('role');
     }
+
+    var recentPostLink = document.querySelector('a.dropdown-item[href$="post1.html"]');
+    if (recentPostLink) {
+      var textEl = recentPostLink.querySelector('.dropdown-text');
+      if (textEl) {
+        textEl.innerHTML =
+          '<span class="dropdown-text-primary">Most Recent Post</span>' +
+          '<span class="dropdown-text-secondary">Post #1</span>';
+      }
+    }
   });
 </script>

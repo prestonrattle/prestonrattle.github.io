@@ -111,3 +111,15 @@ h2 {
   display: block;
   margin-top: 0;
 }
+
+// "Most Recent Post" dropdown item: link label + lighter/smaller post title below it
+.dropdown-item .dropdown-text-primary {
+  display: block;
+}
+
+.dropdown-item .dropdown-text-secondary {
+  display: block;
+  font-size: 0.8em;
+  font-weight: 400;
+  color: #6b7280;
+}
