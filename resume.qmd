@@ -1,22 +1,54 @@
 ---
-title: "Resume"
+title: ""
 toc: true
 toc-location: left
 toc-title: "Contents"
+format:
+  html: default
+  pdf:
+    title: "Preston Rattle"
+    subtitle: "Analytics Professional"
+    author: "prestonrattle@gmail.com  ·  Portland, Oregon"
+    date: ""
+    toc: false
+    fontsize: 10pt
+    geometry: margin=0.7in
+    mainfont: "Latin Modern Sans"
+    colorlinks: false
+    include-in-header:
+      text: |
+        \usepackage{enumitem}
+        \setlist[itemize]{nosep, leftmargin=1.2em, topsep=1.5pt, itemsep=1.5pt}
+        \setlength{\parskip}{0.2em}
+        \RedeclareSectionCommand[
+          beforeskip=0.9em,
+          afterskip=0.3em,
+          font=\normalfont\Large\bfseries
+        ]{subsection}
 ---
+
+::: {.content-visible when-format="html"}
+# Preston Rattle
+
+[prestonrattle@gmail.com · Portland, Oregon]{.role-meta}
 
 - [LinkedIn](https://www.linkedin.com/in/prestonrattle/)
 - [Resume PDF](resume.pdf)
+:::
 
-### Experience
+## Experience
+
+```{=latex}
+\vspace{-0.55em}\hrule\vspace{0.25em}
+```
 
 **Global Digital - Analytics Manager**\
-[Specialized Bicycle Components — Mar 2026 - Present]{.role-meta}
+[Specialized Bicycle Components — March 2026 - Present]{.role-meta}
 
 - Guiding the analytics practice for Global Digital and Specialized more broadly.
 
 **Global Digital - Senior Data Analyst**\
-[Specialized Bicycle Components — Oct 2022 - Mar 2026]{.role-meta}
+[Specialized Bicycle Components — October 2022 - March 2026]{.role-meta}
 
 - Architected ecommerce tracking across 30+ countries and built product datasets from 10+ sources for end-to-end supply chain visibility.
 - Found marketing subscribers had +47% higher LTV, shifting business focus toward subscription growth.
@@ -25,25 +57,29 @@ toc-title: "Contents"
 - Connected online behavior to retail purchases, giving leadership their first omnichannel view.
 
 **Global Ecommerce - Web Analyst**\
-[Specialized Bicycle Components — Aug 2021 - Oct 2022]{.role-meta}
+[Specialized Bicycle Components — August 2021 - October 2022]{.role-meta}
 
 - Partnered with data engineers to build data models for new datasets.
 - Ran market research that informed a new product's launch strategy.
 - Automated manual processes, cutting $100k in annual OPEX.
 
 **Digital Analyst**\
-[Tinuiti — Sep 2020 - Jul 2021]{.role-meta}
+[Tinuiti — September 2020 - July 2021]{.role-meta}
 
 - Principal analyst for clients ranging from $100M to $10B in annual revenue.
 - Built measurement plans and reusable analyses for the broader analytics team.
 - Guided marketing experiments to measure true incrementality of spend.
 
 **Associate Digital Analyst**\
-[Tinuiti — Mar 2019 - Sep 2020]{.role-meta}
+[Tinuiti — March 2019 - September 2020]{.role-meta}
 
 - Based in Philadelphia, PA.
 
-### Skills
+## Skills
+
+```{=latex}
+\vspace{-0.55em}\hrule\vspace{0.25em}
+```
 
 - **Languages & SQL**: SQL (BigQuery, Redshift, Snowflake), Python, R
 - **BI & Visualization**: Tableau, Excel
@@ -51,7 +87,11 @@ toc-title: "Contents"
 - **Data & Experimentation**: Data pipelines & modeling, A/B testing & incrementality measurement, data governance & documentation
 - **Collaboration**: Jira, Confluence
 
-### Education
+## Education
+
+```{=latex}
+\vspace{-0.55em}\hrule\vspace{0.25em}
+```
 
 - Major: Business Administration, University of Oregon — 2016
 - Major: French, University of Oregon — 2016
