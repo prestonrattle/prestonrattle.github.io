@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Resume – Preston Rattle</title>
+<title>Posts – Preston Rattle</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,6 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -73,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -81,10 +112,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-WPG5TZR');</script>
 <!-- End Google Tag Manager -->
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -110,7 +170,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./resume.html" aria-current="page"> 
+    <a class="nav-link" href="./resume.html"> 
 <span class="menu-text">Resume</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -138,21 +198,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul>
-  <li><a href="#experience" id="toc-experience" class="nav-link active" data-scroll-target="#experience">Experience</a></li>
-  <li><a href="#skills" id="toc-skills" class="nav-link" data-scroll-target="#skills">Skills</a></li>
-  <li><a href="#education" id="toc-education" class="nav-link" data-scroll-target="#education">Education</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <script>
@@ -247,7 +294,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Resume</h1>
+<h1 class="title">Posts</h1>
 </div>
 
 
@@ -264,69 +311,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </header>
 
 
-<ul>
-<li><a href="https://www.linkedin.com/in/prestonrattle/" target="_blank" rel="noopener">LinkedIn</a></li>
-<li><a href="resume.pdf" target="_blank" rel="noopener">Resume PDF</a></li>
-</ul>
-<section id="experience" class="level2">
-<h2 class="anchored" data-anchor-id="experience">Experience</h2>
-<p><strong>Global Digital - Analytics Manager</strong><br>
-<span class="role-meta">Specialized Bicycle Components — March 2026 - Present</span></p>
-<ul>
-<li>Guiding the analytics practice for Global Digital and Specialized more broadly.</li>
-</ul>
-<p><strong>Global Digital - Senior Data Analyst</strong><br>
-<span class="role-meta">Specialized Bicycle Components — October 2022 - March 2026</span></p>
-<ul>
-<li>Architected ecommerce tracking across 30+ countries and built product datasets from 10+ sources for end-to-end supply chain visibility.</li>
-<li>Found marketing subscribers had +47% higher LTV, shifting business focus toward subscription growth.</li>
-<li>Cut manual reporting 50% by building self-serve reports and documentation.</li>
-<li>Uncovered $2M in annual revenue leakage; findings presented to the CDO led to reversal.</li>
-<li>Connected online behavior to retail purchases, giving leadership their first omnichannel view.</li>
-</ul>
-<p><strong>Global Ecommerce - Web Analyst</strong><br>
-<span class="role-meta">Specialized Bicycle Components — August 2021 - October 2022</span></p>
-<ul>
-<li>Partnered with data engineers to build data models for new datasets.</li>
-<li>Ran market research that informed a new product’s launch strategy.</li>
-<li>Automated manual processes, cutting $100k in annual OPEX.</li>
-</ul>
-<p><strong>Digital Analyst</strong><br>
-<span class="role-meta">Tinuiti — September 2020 - July 2021</span></p>
-<ul>
-<li>Principal analyst for clients ranging from $100M to $10B in annual revenue.</li>
-<li>Built measurement plans and reusable analyses for the broader analytics team.</li>
-<li>Guided marketing experiments to measure true incrementality of spend.</li>
-</ul>
-<p><strong>Associate Digital Analyst</strong><br>
-<span class="role-meta">Tinuiti — March 2019 - September 2020</span></p>
-<ul>
-<li>Based in Philadelphia, PA.</li>
-</ul>
-</section>
-<section id="skills" class="level2">
-<h2 class="anchored" data-anchor-id="skills">Skills</h2>
-<ul>
-<li><strong>Languages &amp; SQL</strong>: SQL (BigQuery, Redshift, Snowflake), Python, R</li>
-<li><strong>BI &amp; Visualization</strong>: Tableau, Excel</li>
-<li><strong>Web &amp; Marketing Analytics</strong>: Google Analytics, Google Tag Manager, Google Ads, Meta, DV360, Klaviyo</li>
-<li><strong>Data &amp; Experimentation</strong>: Data pipelines &amp; modeling, A/B testing &amp; incrementality measurement, data governance &amp; documentation</li>
-<li><strong>Collaboration</strong>: Jira, Confluence</li>
-</ul>
-</section>
-<section id="education" class="level2">
-<h2 class="anchored" data-anchor-id="education">Education</h2>
-<ul>
-<li>Major: Business Administration, University of Oregon — 2016</li>
-<li>Major: French, University of Oregon — 2016</li>
-<li>Minor: English, University of Oregon — 2016</li>
-<li>Business, Université Jean Moulin Lyon 3 — 2013</li>
-</ul>
 
 
-</section>
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1785715200000" data-listing-file-modified-sort="1788638559465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="27">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./post1.html" class="no-external">Post #1</a>
+</h3>
+<div class="delink listing-description"><a href="./post1.html" class="no-external">
+This is your first post. Replace this with real content — code, charts, and analysis all render natively in Quarto.
+</a></div>
+</div>
+<div class="metadata">
+<a href="./post1.html" class="no-external">
+<div class="listing-date">
+Aug 3, 2026
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
