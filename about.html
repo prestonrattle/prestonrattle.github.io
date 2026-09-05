@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-baf946cb40137b636984924617f4df52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-15735f97306bfd7ba0365597da1e94bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -120,7 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <ul class="dropdown-menu" aria-labelledby="nav-menu-posts">    
         <li>
     <a class="dropdown-item" href="./post1.html">
- <span class="dropdown-text">Post #1</span></a>
+ <span class="dropdown-text">Most Recent Post</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./posts.html">
@@ -265,7 +265,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <p>Hi, I’m Preston. I work in digital analytics and data science, focused on analytics infrastructure, predictive modeling, and causal measurement.</p>
-<p><em>(Replace this with your own bio, background, and interests.)</em></p>
 
 
 
@@ -277,6 +276,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       toggle.setAttribute('href', './posts.html');
       toggle.removeAttribute('data-bs-toggle');
       toggle.removeAttribute('role');
+    }
+
+    var recentPostLink = document.querySelector('a.dropdown-item[href$="post1.html"]');
+    if (recentPostLink) {
+      var textEl = recentPostLink.querySelector('.dropdown-text');
+      if (textEl) {
+        textEl.innerHTML =
+          '<span class="dropdown-text-primary">Most Recent Post</span>' +
+          '<span class="dropdown-text-secondary">Post #1</span>';
+      }
     }
   });
 </script>
