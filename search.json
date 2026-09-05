@@ -1,17 +1,17 @@
 [
   {
-    "objectID": "post1.html",
-    "href": "post1.html",
-    "title": "Post #1",
-    "section": "",
-    "text": "This is your first post. Replace this with real content — code, charts, and analysis all render natively in Quarto.\n\nimport pandas as pd\nprint(\"Hello from Quarto!\")\n\nHello from Quarto!"
-  },
-  {
     "objectID": "resume.html",
     "href": "resume.html",
     "title": "Resume",
     "section": "",
     "text": "LinkedIn: https://www.linkedin.com/in/prestonrattle/ 📄 Download resume PDF\n\nExperience\n\nGlobal Digital Analytics Manager, Specialized Bikes — 2026 March - Present\n\nGuiding the analytics practice for Global Digital and Specialized more broadly.\n\n\n\n\nSkills\n\nProgramming: Python, R\nSQL: Snowflake, BigQuery, Redshift\nBI: Tableau, Data Studio\nWeb analytics: Google Analytics\nWeb tracking: Google Tag Manager\n\n\n\nEducation\n\nMajor: Business Administration, University of Oregon — 2016\nMajor: French, University of Oregon — 2016\nMinor: English, University of Oregon — 2016"
+  },
+  {
+    "objectID": "post1.html",
+    "href": "post1.html",
+    "title": "Post #1",
+    "section": "",
+    "text": "This is your first post. Replace this with real content — code, charts, and analysis all render natively in Quarto.\n\nimport pandas as pd\nprint(\"Hello from Quarto!\")\n\nHello from Quarto!"
   },
   {
     "objectID": "index.html",
