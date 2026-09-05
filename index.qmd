@@ -5,6 +5,9 @@ title: ""
 ::: {.hero}
 # Preston Rattle
 
+::: {.hero-rule}
+:::
+
 Analytics & Data Science — measurement, modeling, and infrastructure.
 :::
 

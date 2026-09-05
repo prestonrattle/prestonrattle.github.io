@@ -20,12 +20,11 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: theme.scss
     toc: false
-    page-layout: full
+    page-layout: article
     include-in-header: gtm-head.html
     include-before-body:
-      - gtm-datalayer.html
+      - gtm-page-view.html
       - gtm-search-events.html
       - gtm-body.html

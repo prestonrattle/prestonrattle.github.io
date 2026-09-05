@@ -15,13 +15,15 @@
       var item = resultLink.closest('.aa-Item');
       var list = item ? item.closest('.aa-List') : null;
       var position = null;
+      var resultCount = null;
 
       if (list) {
         var items = Array.prototype.slice.call(list.querySelectorAll('.aa-Item'));
         position = items.indexOf(item) + 1; // 1-based position
+        resultCount = items.length;
       }
 
-      var titleEl = item ? item.querySelector('.aa-ItemContentTitle') : null;
+      var titleEl = item ? item.querySelector('.search-result-title') : null;
       var resultTitle = titleEl ? titleEl.textContent.trim() : resultLink.textContent.trim();
 
       var searchInput = document.querySelector('#quarto-search input, .aa-Input');
@@ -31,7 +33,8 @@
         'event': 'search_complete',
         'search_term': searchTerm,
         'result_position': position,
-        'result_title': resultTitle
+        'result_title': resultTitle,
+        'result_count': resultCount
       });
     }
 
