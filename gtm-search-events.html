@@ -23,8 +23,24 @@
         resultCount = items.length;
       }
 
-      var titleEl = item ? item.querySelector('.search-result-title') : null;
-      var resultTitle = titleEl ? titleEl.textContent.trim() : resultLink.textContent.trim();
+      // Page title: a doc-level result carries its own .search-result-title;
+      // a grouped sub-section result (.search-result-doc-section) has none and
+      // relies on the nearest preceding sibling item for the page it belongs to.
+      var pageTitleEl = item ? item.querySelector('.search-result-title') : null;
+      var pageTitleItem = item;
+      while (!pageTitleEl && pageTitleItem && pageTitleItem.previousElementSibling) {
+        pageTitleItem = pageTitleItem.previousElementSibling;
+        pageTitleEl = pageTitleItem.querySelector('.search-result-title');
+      }
+      var resultPage = pageTitleEl ? pageTitleEl.textContent.trim() : null;
+
+      // Result title: prefer the matched section/heading name when present
+      // (e.g. "Education"), falling back to the page title for page-level
+      // matches with no specific heading.
+      var sectionEl = item ? item.querySelector('.search-result-section') : null;
+      var resultTitle = sectionEl
+        ? sectionEl.textContent.trim()
+        : (resultPage || resultLink.textContent.trim());
 
       var searchInput = document.querySelector('#quarto-search input, .aa-Input');
       var searchTerm = searchInput ? searchInput.value : '';
@@ -34,6 +50,7 @@
         'search_term': searchTerm,
         'result_position': position,
         'result_title': resultTitle,
+        'result_page': resultPage,
         'result_count': resultCount
       });
     }

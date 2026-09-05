@@ -20,8 +20,8 @@
     dataLayer.push({
       'event': 'page_view',
       'page_type': pageType,
-      'pageTitle': document.title,
-      'pagePath': path
+      'page_title': document.title,
+      'page_url': window.location.href
     });
   })();
 </script>

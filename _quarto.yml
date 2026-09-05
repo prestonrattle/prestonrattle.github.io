@@ -15,8 +15,12 @@ website:
         text: About Me
       - href: resume.qmd
         text: Resume
-      - href: post1.qmd
-        text: "Post #1"
+      - text: "Posts"
+        menu:
+          - href: post1.qmd
+            text: "Post #1"
+          - href: posts.qmd
+            text: "All Posts"
 
 format:
   html:
