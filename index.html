@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-15735f97306bfd7ba0365597da1e94bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2ee36c0d1826c91a49de9f46f619b6a5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -120,7 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <ul class="dropdown-menu" aria-labelledby="nav-menu-posts">    
         <li>
     <a class="dropdown-item" href="./post1.html">
- <span class="dropdown-text">Most Recent Post</span></a>
+ <span class="dropdown-text">Latest Post</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./posts.html">
@@ -163,9 +163,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     dataLayer.push({
       'event': 'page_view',
-      'page_type': pageType,
-      'page_title': document.title,
-      'page_url': window.location.href
+      'page_type': pageType.toLowerCase(),
+      'page_title': document.title.toLowerCase(),
+      'page_url': window.location.href.toLowerCase()
     });
   })();
 </script>
@@ -203,18 +203,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         pageTitleItem = pageTitleItem.previousElementSibling;
         pageTitleEl = pageTitleItem.querySelector('.search-result-title');
       }
-      var resultPage = pageTitleEl ? pageTitleEl.textContent.trim() : null;
+      var resultPage = pageTitleEl ? pageTitleEl.textContent.trim().toLowerCase() : null;
 
       // Result title: prefer the matched section/heading name when present
       // (e.g. "Education"), falling back to the page title for page-level
       // matches with no specific heading.
       var sectionEl = item ? item.querySelector('.search-result-section') : null;
       var resultTitle = sectionEl
-        ? sectionEl.textContent.trim()
-        : (resultPage || resultLink.textContent.trim());
+        ? sectionEl.textContent.trim().toLowerCase()
+        : (resultPage || resultLink.textContent.trim().toLowerCase());
 
       var searchInput = document.querySelector('#quarto-search input, .aa-Input');
-      var searchTerm = searchInput ? searchInput.value : '';
+      var searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
 
       dataLayer.push({
         'event': 'search_complete',
@@ -236,7 +236,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     if (navLink) {
       dataLayer.push({
         'event': 'click_navigation',
-        'text': navLink.textContent.trim()
+        'text': navLink.textContent.trim().toLowerCase()
+      });
+    }
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  document.addEventListener('click', function (e) {
+    var card = e.target.closest('.home-card');
+    if (card) {
+      var headlineEl = card.querySelector('.home-card-title');
+      var subtitleEl = card.querySelector('.home-card-desc');
+
+      dataLayer.push({
+        'event': 'click_home_card',
+        'headline': headlineEl ? headlineEl.textContent.trim().toLowerCase() : null,
+        'subtitle': subtitleEl ? subtitleEl.textContent.trim().toLowerCase() : null
       });
     }
   });
@@ -255,6 +272,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <p>Analytics &amp; Data Science</p>
 </section>
+<div class="home-cards">
+  <a class="home-card" href="./about.html">
+    <span class="home-card-title">About Me</span>
+    <span class="home-card-desc">Background &amp; interests</span>
+  </a>
+  <a class="home-card" href="./resume.html">
+    <span class="home-card-title">Resume</span>
+    <span class="home-card-desc">Experience &amp; skills</span>
+  </a>
+  <a class="home-card" href="./post1.html">
+    <span class="home-card-title">Latest Post</span>
+    <span class="home-card-desc">Post #1</span>
+  </a>
+</div>
 
 
 
@@ -273,7 +304,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       var textEl = recentPostLink.querySelector('.dropdown-text');
       if (textEl) {
         textEl.innerHTML =
-          '<span class="dropdown-text-primary">Most Recent Post</span>' +
+          '<span class="dropdown-text-primary">Latest Post</span>' +
           '<span class="dropdown-text-secondary">Post #1</span>';
       }
     }
