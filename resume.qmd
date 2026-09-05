@@ -5,7 +5,7 @@ toc-location: left
 toc-title: "Contents"
 ---
 
-LinkedIn: https://www.linkedin.com/in/prestonrattle/
+LinkedIn: [https://www.linkedin.com/in/prestonrattle/](https://www.linkedin.com/in/prestonrattle/)
 [📄 Download resume PDF](resume.pdf)
 
 ### Experience
