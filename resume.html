@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3e9b1289f5f353c49b617ce48ad2bc38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e71eab69a8ac88539d8fee7509520f4d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -82,7 +82,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="floating nav-fixed quarto-light">
@@ -126,7 +125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
@@ -144,7 +143,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  (function () {
+    var path = window.location.pathname;
+    var pageType;
+
+    if (path === '/' || path.endsWith('/index.html')) {
+      pageType = 'home';
+    } else if (path.includes('about')) {
+      pageType = 'about';
+    } else if (path.includes('resume')) {
+      pageType = 'resume';
+    } else if (path.includes('post')) {
+      pageType = 'post';
+    } else {
+      pageType = 'other';
+    }
+
+    dataLayer.push({
+      'event': 'page_view',
+      'page_type': pageType,
+      'pageTitle': document.title,
+      'pagePath': path
+    });
+  })();
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
 
@@ -162,13 +188,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       var item = resultLink.closest('.aa-Item');
       var list = item ? item.closest('.aa-List') : null;
       var position = null;
+      var resultCount = null;
 
       if (list) {
         var items = Array.prototype.slice.call(list.querySelectorAll('.aa-Item'));
         position = items.indexOf(item) + 1; // 1-based position
+        resultCount = items.length;
       }
 
-      var titleEl = item ? item.querySelector('.aa-ItemContentTitle') : null;
+      var titleEl = item ? item.querySelector('.search-result-title') : null;
       var resultTitle = titleEl ? titleEl.textContent.trim() : resultLink.textContent.trim();
 
       var searchInput = document.querySelector('#quarto-search input, .aa-Input');
@@ -178,7 +206,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'event': 'search_complete',
         'search_term': searchTerm,
         'result_position': position,
-        'result_title': resultTitle
+        'result_title': resultTitle,
+        'result_count': resultCount
       });
     }
 
@@ -195,7 +224,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta">
 
     
   
@@ -209,63 +238,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <ul>
 <li><a href="https://www.linkedin.com/in/prestonrattle/">LinkedIn</a></li>
-<li><a href="resume.pdf">📄 Download resume PDF</a></li>
+<li><a href="resume.pdf">Resume PDF</a></li>
 </ul>
 <section id="experience" class="level3">
 <h3 class="anchored" data-anchor-id="experience">Experience</h3>
-<ul>
-<li><strong>Global Digital - Analytics Manager</strong>, Specialized Bicycle Components — Mar 2026 - Present
+<p><strong>Global Digital - Analytics Manager</strong><br>
+<span class="role-meta">Specialized Bicycle Components — Mar 2026 - Present</span></p>
 <ul>
 <li>Guiding the analytics practice for Global Digital and Specialized more broadly.</li>
-</ul></li>
-<li><strong>Global Digital - Senior Data Analyst</strong>, Specialized Bicycle Components — Oct 2022 - Mar 2026
+</ul>
+<p><strong>Global Digital - Senior Data Analyst</strong><br>
+<span class="role-meta">Specialized Bicycle Components — Oct 2022 - Mar 2026</span></p>
 <ul>
-<li>Led analytics initiatives for the global digital business, supporting reporting, analysis, and insight generation across marketing, product, operations, finance, and executive leadership.</li>
-<li>Partnered with technology &amp; business leaders to design data solutions that give visibility into operational performance for major global initiatives.</li>
-<li>Positioned Global Digital as a leader in data-driven operations, leading to requests for support &amp; guidance across the organization.</li>
-<li>Architected tracking for the global ecommerce site, designing the data layer and implementation across 30+ ecommerce-enabled countries.</li>
-<li>Engineered product datasets using SQL &amp; ETL tools, combining 10+ data sources, enabling end-to-end visibility into product movement from manufacturer to warehouse to customer.</li>
-<li>Analyzed customers subscribed to marketing, finding they had +47% higher LTV than non-subscribed customers, so the business increased focus on growing subscriptions.</li>
-<li>Reduced manual reporting by 50% across the Global Digital business, creating self-serve reports supported by robust documentation.</li>
-<li>Identified $2M in annual revenue leakage from a global promotion change; presented analysis to Chief Digital Officer that led to reversal and recaptured revenue.</li>
-<li>Connected online behavior to retail purchases by writing complex SQL that gave executive leadership insight into omnichannel customer journey for the first time.</li>
-<li>Mentored junior analysts, supporting growth &amp; advancing analytical output.</li>
-</ul></li>
-<li><strong>Global Ecommerce - Web Analyst</strong>, Specialized Bicycle Components — Aug 2021 - Oct 2022
+<li>Architected ecommerce tracking across 30+ countries and built product datasets from 10+ sources for end-to-end supply chain visibility.</li>
+<li>Found marketing subscribers had +47% higher LTV, shifting business focus toward subscription growth.</li>
+<li>Cut manual reporting 50% by building self-serve reports and documentation.</li>
+<li>Uncovered $2M in annual revenue leakage; findings presented to the CDO led to reversal.</li>
+<li>Connected online behavior to retail purchases, giving leadership their first omnichannel view.</li>
+</ul>
+<p><strong>Global Ecommerce - Web Analyst</strong><br>
+<span class="role-meta">Specialized Bicycle Components — Aug 2021 - Oct 2022</span></p>
 <ul>
-<li>Educated teammates &amp; stakeholders on best practices for using tools/reports &amp; performing analysis.</li>
-<li>Partnered with data engineers to create data models for new datasets.</li>
-<li>Performed market research that informed the launch strategy of a new product offering.</li>
-<li>Reduced OPEX by $100k annually for team by automating manual processes, allowing organization to simplify technology stack.</li>
-</ul></li>
-<li><strong>Digital Analyst</strong>, Tinuiti — Sep 2020 - Jul 2021
+<li>Partnered with data engineers to build data models for new datasets.</li>
+<li>Ran market research that informed a new product’s launch strategy.</li>
+<li>Automated manual processes, cutting $100k in annual OPEX.</li>
+</ul>
+<p><strong>Digital Analyst</strong><br>
+<span class="role-meta">Tinuiti — Sep 2020 - Jul 2021</span></p>
 <ul>
-<li>Principal analyst for clients with annual revenue ranging from $100 million to $10 billion.</li>
-<li>Designed plans to help businesses track &amp; measure performance against their goals.</li>
-<li>Created reusable analyses for the greater analytics department.</li>
-<li>Guided marketing experiments to understand incrementality of spend.</li>
-<li>Grew client accounts by partnering with account managers &amp; junior analysts.</li>
-</ul></li>
-<li><strong>Associate Digital Analyst</strong>, Tinuiti — Mar 2019 - Sep 2020
+<li>Principal analyst for clients ranging from $100M to $10B in annual revenue.</li>
+<li>Built measurement plans and reusable analyses for the broader analytics team.</li>
+<li>Guided marketing experiments to measure true incrementality of spend.</li>
+</ul>
+<p><strong>Associate Digital Analyst</strong><br>
+<span class="role-meta">Tinuiti — Mar 2019 - Sep 2020</span></p>
 <ul>
 <li>Based in Philadelphia, PA.</li>
-</ul></li>
 </ul>
 </section>
 <section id="skills" class="level3">
 <h3 class="anchored" data-anchor-id="skills">Skills</h3>
 <ul>
-<li>Story-based, outcome-focused analysis</li>
-<li>Data governance &amp; documentation</li>
-<li>Data pipelines &amp; modeling</li>
-<li>Advanced SQL (BigQuery, Redshift, Snowflake)</li>
-<li>Advanced Excel</li>
-<li>Advanced Tableau</li>
-<li>Intermediate R, Python, &amp; JavaScript</li>
-<li>Advanced Google Tag Manager</li>
-<li>Web Analytics (e.g.&nbsp;Google Analytics)</li>
-<li>Marketing platforms (e.g.&nbsp;Google Ads, Klaviyo, DV360, Meta, etc.)</li>
-<li>Documentation &amp; project management tools such as Jira &amp; Confluence</li>
+<li><strong>Languages &amp; SQL</strong>: SQL (BigQuery, Redshift, Snowflake), Python, R</li>
+<li><strong>BI &amp; Visualization</strong>: Tableau, Excel</li>
+<li><strong>Web &amp; Marketing Analytics</strong>: Google Analytics, Google Tag Manager, Google Ads, Meta, DV360, Klaviyo</li>
+<li><strong>Data &amp; Experimentation</strong>: Data pipelines &amp; modeling, A/B testing &amp; incrementality measurement, data governance &amp; documentation</li>
+<li><strong>Collaboration</strong>: Jira, Confluence</li>
 </ul>
 </section>
 <section id="education" class="level3">
