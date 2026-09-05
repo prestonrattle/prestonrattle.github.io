@@ -31,4 +31,6 @@ format:
     include-before-body:
       - gtm-page-view.html
       - gtm-search-events.html
+      - gtm-nav-events.html
       - gtm-body.html
+    include-after-body: nav-posts-link.html

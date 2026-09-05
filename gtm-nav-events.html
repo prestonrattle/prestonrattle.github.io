@@ -1,0 +1,13 @@
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  document.addEventListener('click', function (e) {
+    var navLink = e.target.closest('.navbar a');
+    if (navLink) {
+      dataLayer.push({
+        'event': 'click_navigation',
+        'text': navLink.textContent.trim()
+      });
+    }
+  });
+</script>

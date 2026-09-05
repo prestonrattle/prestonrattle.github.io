@@ -105,3 +105,9 @@ h2 {
   margin-top: 0.15rem;
   margin-bottom: 0.5rem;
 }
+
+// Open navbar dropdowns (e.g. Posts) on hover instead of click
+.navbar .nav-item.dropdown:hover > .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}

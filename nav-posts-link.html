@@ -1,0 +1,10 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var toggle = document.getElementById('nav-menu-posts');
+    if (toggle) {
+      toggle.setAttribute('href', './posts.html');
+      toggle.removeAttribute('data-bs-toggle');
+      toggle.removeAttribute('role');
+    }
+  });
+</script>
