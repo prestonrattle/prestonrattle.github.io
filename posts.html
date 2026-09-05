@@ -47,7 +47,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e71eab69a8ac88539d8fee7509520f4d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-baf946cb40137b636984924617f4df52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -288,6 +288,19 @@ window.Quarto = {
 
   });
 </script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  document.addEventListener('click', function (e) {
+    var navLink = e.target.closest('.navbar a');
+    if (navLink) {
+      dataLayer.push({
+        'event': 'click_navigation',
+        'text': navLink.textContent.trim()
+      });
+    }
+  });
+</script>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPG5TZR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
@@ -317,7 +330,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1785715200000" data-listing-file-modified-sort="1788638559465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="27">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1785715200000" data-listing-file-modified-sort="1788639379578" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="27">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./post1.html" class="no-external">Post #1</a>
@@ -337,6 +350,16 @@ Aug 3, 2026
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div></main> <!-- /main -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var toggle = document.getElementById('nav-menu-posts');
+    if (toggle) {
+      toggle.setAttribute('href', './posts.html');
+      toggle.removeAttribute('data-bs-toggle');
+      toggle.removeAttribute('role');
+    }
+  });
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
