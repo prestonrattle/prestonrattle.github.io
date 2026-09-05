@@ -112,7 +112,7 @@ h2 {
   margin-top: 0;
 }
 
-// "Most Recent Post" dropdown item: link label + lighter/smaller post title below it
+// "Latest Post" dropdown item: link label + lighter/smaller post title below it
 .dropdown-item .dropdown-text-primary {
   display: block;
 }
@@ -122,4 +122,51 @@ h2 {
   font-size: 0.8em;
   font-weight: 400;
   color: #6b7280;
+}
+
+// Homepage: About Me / Resume / Latest Post cards
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 60rem;
+  margin: 1rem auto 3rem auto;
+  padding: 0 1rem;
+}
+
+.home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 180px;
+  padding: 2.5rem 1.5rem;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  color: $body-color;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.home-card:hover {
+  border-color: $primary;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.home-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.home-card-desc {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+@media (max-width: 700px) {
+  .home-cards {
+    grid-template-columns: 1fr;
+  }
 }

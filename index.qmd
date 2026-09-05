@@ -10,3 +10,20 @@ title: ""
 
 Analytics & Data Science
 :::
+
+```{=html}
+<div class="home-cards">
+  <a class="home-card" href="./about.html">
+    <span class="home-card-title">About Me</span>
+    <span class="home-card-desc">Background &amp; interests</span>
+  </a>
+  <a class="home-card" href="./resume.html">
+    <span class="home-card-title">Resume</span>
+    <span class="home-card-desc">Experience &amp; skills</span>
+  </a>
+  <a class="home-card" href="./post1.html">
+    <span class="home-card-title">Latest Post</span>
+    <span class="home-card-desc">Post #1</span>
+  </a>
+</div>
+```

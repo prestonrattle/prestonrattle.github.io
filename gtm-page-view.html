@@ -19,9 +19,9 @@
 
     dataLayer.push({
       'event': 'page_view',
-      'page_type': pageType,
-      'page_title': document.title,
-      'page_url': window.location.href
+      'page_type': pageType.toLowerCase(),
+      'page_title': document.title.toLowerCase(),
+      'page_url': window.location.href.toLowerCase()
     });
   })();
 </script>

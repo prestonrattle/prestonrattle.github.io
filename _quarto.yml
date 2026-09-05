@@ -18,7 +18,7 @@ website:
       - text: "Posts"
         menu:
           - href: post1.qmd
-            text: "Most Recent Post"
+            text: "Latest Post"
           - href: posts.qmd
             text: "All Posts"
 
@@ -32,5 +32,6 @@ format:
       - gtm-page-view.html
       - gtm-search-events.html
       - gtm-nav-events.html
+      - gtm-home-cards.html
       - gtm-body.html
     include-after-body: nav-posts-link.html

@@ -1,0 +1,17 @@
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  document.addEventListener('click', function (e) {
+    var card = e.target.closest('.home-card');
+    if (card) {
+      var headlineEl = card.querySelector('.home-card-title');
+      var subtitleEl = card.querySelector('.home-card-desc');
+
+      dataLayer.push({
+        'event': 'click_home_card',
+        'headline': headlineEl ? headlineEl.textContent.trim().toLowerCase() : null,
+        'subtitle': subtitleEl ? subtitleEl.textContent.trim().toLowerCase() : null
+      });
+    }
+  });
+</script>

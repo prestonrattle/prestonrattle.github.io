@@ -6,7 +6,7 @@
     if (navLink) {
       dataLayer.push({
         'event': 'click_navigation',
-        'text': navLink.textContent.trim()
+        'text': navLink.textContent.trim().toLowerCase()
       });
     }
   });
