@@ -1,10 +1,11 @@
 ---
-title: ""
+title: "Resume"
 toc: true
 toc-location: left
 toc-title: "Contents"
 format:
-  html: default
+  html:
+    format-links: false
   pdf:
     title: "Preston Rattle"
     subtitle: "Analytics Professional"
@@ -28,10 +29,6 @@ format:
 ---
 
 ::: {.content-visible when-format="html"}
-# Preston Rattle
-
-[prestonrattle@gmail.com · Portland, Oregon]{.role-meta}
-
 - [LinkedIn](https://www.linkedin.com/in/prestonrattle/){target="_blank" rel="noopener"}
 - [Resume PDF](resume.pdf){target="_blank" rel="noopener"}
 :::
