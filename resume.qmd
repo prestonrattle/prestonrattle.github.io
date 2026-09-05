@@ -32,8 +32,8 @@ format:
 
 [prestonrattle@gmail.com · Portland, Oregon]{.role-meta}
 
-- [LinkedIn](https://www.linkedin.com/in/prestonrattle/)
-- [Resume PDF](resume.pdf)
+- [LinkedIn](https://www.linkedin.com/in/prestonrattle/){target="_blank" rel="noopener"}
+- [Resume PDF](resume.pdf){target="_blank" rel="noopener"}
 :::
 
 ## Experience
