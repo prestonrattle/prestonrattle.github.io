@@ -30,21 +30,6 @@ jobs:
       - name: Render site
         run: quarto render
 
-      - name: Render resume as PDF
-        run: quarto render resume.qmd --to pdf -o resume.pdf
-
-      - name: Ensure resume PDF is in docs folder
-        run: |
-          if [ -f resume.pdf ]; then
-            mv resume.pdf docs/resume.pdf
-          elif [ -f docs/resume.pdf ]; then
-            echo "PDF already in docs/, nothing to move."
-          else
-            echo "Could not find rendered resume.pdf anywhere!"
-            find . -name "resume.pdf"
-            exit 1
-          fi
-
       - name: Publish to GitHub Pages (gh-pages branch)
         uses: peaceiris/actions-gh-pages@v4
         with:
