@@ -13,17 +13,17 @@ format:
     date: ""
     toc: false
     fontsize: 10pt
-    geometry: margin=0.7in
+    geometry: margin=0.6in
     mainfont: "Latin Modern Sans"
     colorlinks: false
     include-in-header:
       text: |
         \usepackage{enumitem}
-        \setlist[itemize]{nosep, leftmargin=1.2em, topsep=1.5pt, itemsep=1.5pt}
-        \setlength{\parskip}{0.2em}
+        \setlist[itemize]{nosep, leftmargin=1.2em, topsep=1pt, itemsep=1pt}
+        \setlength{\parskip}{0.15em}
         \RedeclareSectionCommand[
-          beforeskip=0.9em,
-          afterskip=0.3em,
+          beforeskip=0.7em,
+          afterskip=0.2em,
           font=\normalfont\Large\bfseries
         ]{subsection}
 ---
@@ -32,6 +32,10 @@ format:
 - [LinkedIn](https://www.linkedin.com/in/prestonrattle/){target="_blank" rel="noopener"}
 - [Resume PDF](resume.pdf){target="_blank" rel="noopener"}
 :::
+
+```{=latex}
+\vspace{-2em}
+```
 
 ## Experience
 
@@ -90,7 +94,14 @@ format:
 \vspace{-0.55em}\hrule\vspace{0.25em}
 ```
 
-- Major: Business Administration, University of Oregon — 2016
-- Major: French, University of Oregon — 2016
-- Minor: English, University of Oregon — 2016
-- Business, Université Jean Moulin Lyon 3 — 2013
+**University of Oregon**\
+[2016]{.role-meta}
+
+- Major: Business Administration
+- Major: French
+- Minor: English
+
+**Université Jean Moulin Lyon 3**\
+[2013]{.role-meta}
+
+- Focus: Business
