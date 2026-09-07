@@ -4,6 +4,9 @@ project:
   resources:
     - images/
 
+language:
+  title-block-modified: "Updated"
+
 website:
   title: "Preston Rattle"
   navbar:
