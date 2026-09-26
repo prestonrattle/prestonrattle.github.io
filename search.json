@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "resume.html#summary",
+    "href": "resume.html#summary",
+    "title": "Resume",
+    "section": "Summary",
+    "text": "Summary\nAnalytics Manager with 7+ years in global ecommerce and marketing analytics. I lead data science, analytics, & omnichannel measurement, turning questions into executive decisions ($2M revenue leakage recovered). I build self-serve analytics practices and teams."
+  },
+  {
     "objectID": "resume.html#experience",
     "href": "resume.html#experience",
     "title": "Resume",
@@ -21,11 +28,11 @@
     "text": "Education\nUniversity of Oregon\n2016\n\nMajor: Business Administration\nMajor: French\nMinor: English\n\nUniversité Jean Moulin Lyon 3\n2013\n\nFocus: Business"
   },
   {
-    "objectID": "post1.html",
-    "href": "post1.html",
-    "title": "Post #1",
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Posts",
     "section": "",
-    "text": "This is your first post. Replace this with real content — code, charts, and analysis all render natively in Quarto.\n\nimport pandas as pd\nprint(\"Hello from Quarto!\")\n\nHello from Quarto!"
+    "text": "Post #1\n\n\n\n\n\n\n\n\nAug 3, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -35,11 +42,11 @@
     "text": "Preston Rattle\n\n\n\nAnalytics & Data Science\n\n\n  \n    About Me\n    Background & interests\n  \n  \n    Resume\n    Experience & skills\n  \n  \n    Latest Post\n    Post #1"
   },
   {
-    "objectID": "posts.html",
-    "href": "posts.html",
-    "title": "Posts",
+    "objectID": "post1.html",
+    "href": "post1.html",
+    "title": "Post #1",
     "section": "",
-    "text": "Post #1\n\n\n\n\n\n\n\n\nAug 3, 2026\n\n\n\n\n\nNo matching items"
+    "text": "This is your first post. Replace this with real content — code, charts, and analysis all render natively in Quarto.\n\nimport pandas as pd\nprint(\"Hello from Quarto!\")\n\nHello from Quarto!"
   },
   {
     "objectID": "about.html",
