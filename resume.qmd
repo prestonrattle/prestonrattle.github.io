@@ -8,12 +8,12 @@ format:
     format-links: false
   pdf:
     title: "Preston Rattle"
-    subtitle: "Analytics Professional"
+    subtitle: "Analytics Manager"
     author: "prestonrattle@gmail.com  ·  Portland, Oregon"
     date: ""
     toc: false
     fontsize: 10pt
-    geometry: margin=0.6in
+    geometry: "margin=0.6in,top=0.4in,bottom=0.5in"
     mainfont: "Latin Modern Sans"
     colorlinks: false
     include-in-header:
@@ -34,8 +34,16 @@ format:
 :::
 
 ```{=latex}
-\vspace{-2em}
+\vspace{-3em}
 ```
+
+## Summary
+
+```{=latex}
+\vspace{-0.55em}\hrule\vspace{0.25em}
+```
+
+Analytics Manager with 7+ years in global ecommerce and marketing analytics. I lead data science, analytics, & omnichannel measurement, turning questions into executive decisions ($2M revenue leakage recovered). I build self-serve analytics practices and teams.
 
 ## Experience
 
