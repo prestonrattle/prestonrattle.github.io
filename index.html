@@ -119,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-posts">    
         <li>
-    <a class="dropdown-item" href="./post1.html">
+    <a class="dropdown-item" href="./post2.html">
  <span class="dropdown-text">Latest Post</span></a>
   </li>  
         <li>
@@ -281,9 +281,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <span class="home-card-title">Resume</span>
     <span class="home-card-desc">Experience &amp; skills</span>
   </a>
-  <a class="home-card" href="./post1.html">
+  <a class="home-card" href="./post2.html">
     <span class="home-card-title">Latest Post</span>
-    <span class="home-card-desc">Post #1</span>
+    <span class="home-card-desc">Daily app ratings</span>
   </a>
 </div>
 
@@ -299,13 +299,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       toggle.removeAttribute('role');
     }
 
-    var recentPostLink = document.querySelector('a.dropdown-item[href$="post1.html"]');
+    var recentPostLink = document.querySelector('a.dropdown-item[href$="post2.html"]');
     if (recentPostLink) {
       var textEl = recentPostLink.querySelector('.dropdown-text');
       if (textEl) {
         textEl.innerHTML =
           '<span class="dropdown-text-primary">Latest Post</span>' +
-          '<span class="dropdown-text-secondary">Post #1</span>';
+          '<span class="dropdown-text-secondary">Daily app ratings</span>';
       }
     }
   });

@@ -32,14 +32,70 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Post #1\n\n\n\n\n\n\n\n\nAug 3, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets\n\n\nA small nightly job that records an app’s star rating and rating count from the App Store and Google Play into a Google Sheet.\n\n\n\n\n\nSep 30, 2026\n\n\n\n\n\n\n\nPost #1\n\n\n\n\n\n\n\n\nAug 3, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "post2.html",
+    "href": "post2.html",
+    "title": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets",
+    "section": "",
+    "text": "Every night at midnight UTC, a small Python script records the Specialized app’s star rating and rating count from the App Store and Google Play, and adds two rows to a Google Sheet. It runs free on GitHub Actions and needs no server."
+  },
+  {
+    "objectID": "post2.html#the-goal",
+    "href": "post2.html#the-goal",
+    "title": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets",
+    "section": "The goal",
+    "text": "The goal\nApp store ratings change slowly, and neither store keeps a public history. If you want a trend line, you have to record it yourself, every day. I wanted two rows a day, one per store:\n\n\n\nDate\nSource\nRating\nRating Count\nCountry\n\n\n\n\n9/30/2026\napp store\n4.73583\n11368\nUS\n\n\n9/30/2026\ngoogle play\n4.577777862548828\n11001\nUS\n\n\n\n\nDate is the UTC day the data was collected.\nRating is kept at full precision. You can always round later, but you can’t get lost decimals back.\nRating Count is the number of star ratings, not written reviews. Neither store publishes a comparable count of written reviews."
+  },
+  {
+    "objectID": "post2.html#how-it-fits-together",
+    "href": "post2.html#how-it-fits-together",
+    "title": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets",
+    "section": "How it fits together",
+    "text": "How it fits together\n\nGitHub starts the job at midnight UTC. The script reads each store’s public data, then writes both rows to the sheet through the Google Sheets API."
+  },
+  {
+    "objectID": "post2.html#getting-the-data",
+    "href": "post2.html#getting-the-data",
+    "title": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets",
+    "section": "Getting the data",
+    "text": "Getting the data\nThe two stores needed completely different approaches. Apple has a public API. Google has none, but its store page contains the numbers in a machine-readable form.\n\nApp Store: a public lookup API\nApple’s iTunes Search API returns an app’s details as JSON, with no key or login. You pass the app’s ID (the number at the end of its App Store URL) and a country code:\nhttps://itunes.apple.com/lookup?id=1587051382&country=us\nThe response has the two fields I need:\n{\n  \"resultCount\": 1,\n  \"results\": [{\n    \"trackName\": \"Specialized\",\n    \"averageUserRating\": 4.73583,\n    \"userRatingCount\": 11368\n  }]\n}\nIn Python, that’s a single request:\nimport requests\n\nresp = requests.get(\n    \"https://itunes.apple.com/lookup\",\n    params={\"id\": 1587051382, \"country\": \"us\"},\n    timeout=30,\n)\napp = resp.json()[\"results\"][0]\nprint(app[\"averageUserRating\"], app[\"userRatingCount\"])  # 4.73583 11368\n\n\nGoogle Play: structured data in the page\nGoogle Play has no public ratings API. But every app page includes a small block of schema.org JSON that search engines read, and the rating is in it:\n&lt;script type=\"application/ld+json\"&gt;\n{\n  \"@type\": \"SoftwareApplication\",\n  \"name\": \"Specialized\",\n  \"aggregateRating\": {\n    \"ratingValue\": \"4.577777862548828\",\n    \"ratingCount\": \"11001\"\n  }\n}\n&lt;/script&gt;\nThe script downloads the page for the US store (gl=US) and reads that block:\nimport json, re, requests\n\nhtml = requests.get(\n    \"https://play.google.com/store/apps/details\",\n    params={\"id\": \"com.specialized.android\", \"hl\": \"en_US\", \"gl\": \"US\"},\n    headers={\"User-Agent\": \"Mozilla/5.0\"},\n    timeout=30,\n).text\n\nfor block in re.findall(r'&lt;script type=\"application/ld\\+json\"[^&gt;]*&gt;(.*?)&lt;/script&gt;', html, re.S):\n    data = json.loads(block)\n    if data.get(\"@type\") == \"SoftwareApplication\":\n        rating = data[\"aggregateRating\"]\n        print(rating[\"ratingValue\"], rating[\"ratingCount\"])  # 4.5777... 11001\nReading the page is less stable than an official API, so the script checks what it finds. If the block is missing or the numbers look wrong, it fails loudly instead of writing bad data."
+  },
+  {
+    "objectID": "post2.html#writing-to-google-sheets",
+    "href": "post2.html#writing-to-google-sheets",
+    "title": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets",
+    "section": "Writing to Google Sheets",
+    "text": "Writing to Google Sheets\nReading the stores needs no login, because the data is public. Writing to a private Google Sheet at midnight, with nobody logged in, needs three things set up once:\n\n\n\n\n\n\n\n\nPiece\nWhat it is\nWhy it’s needed\n\n\n\n\nGoogle Cloud project\nA free container for API usage\nGoogle ties every API request to a project\n\n\nGoogle Sheets API\nThe entry point programs use to read and write Sheets\nEvery Google API is off by default and has to be switched on per project\n\n\nService account\nA robot Google account with a JSON key as its password\nSomething has to log in, and it shouldn’t be your personal account\n\n\n\nA new service account can’t see anything. You give it access by sharing the sheet with its email address (something like sheets-writer@my-project.iam.gserviceaccount.com) as an Editor, exactly as you would with a person. It gets that one sheet and nothing else in your Drive.\nWith the key in hand, the gspread library makes the write short:\nimport gspread, json, os\n\nclient = gspread.service_account_from_dict(\n    json.loads(os.environ[\"GCP_SA_KEY\"]),\n    scopes=[\"https://www.googleapis.com/auth/spreadsheets\"],\n)\nsheet = client.open_by_key(\"YOUR_SHEET_ID\").worksheet(\"Sheet1\")\n\nsheet.append_rows(\n    [[\"2026-09-30\", \"app store\", 4.73583, 11368, \"US\"],\n     [\"2026-09-30\", \"google play\", 4.577777862548828, 11001, \"US\"]],\n    value_input_option=\"USER_ENTERED\",  # so \"2026-09-30\" becomes a real date\n)\nUSER_ENTERED tells Sheets to treat the values as if typed by hand. That means the date is stored as a real date you can sort and chart, not as text."
+  },
+  {
+    "objectID": "post2.html#running-it-every-night",
+    "href": "post2.html#running-it-every-night",
+    "title": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets",
+    "section": "Running it every night",
+    "text": "Running it every night\nGitHub Actions can run a script on a schedule, on GitHub’s own machines, for free. The whole job is one file in the repo at .github/workflows/:\nname: App daily ratings\n\non:\n  schedule:\n    - cron: \"0 0 * * *\"   # every day at 00:00 UTC\n  workflow_dispatch:       # adds a \"Run workflow\" button for manual runs\n\njobs:\n  collect:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v7\n      - uses: actions/setup-python@v7\n        with:\n          python-version: \"3.11\"\n      - run: pip install -r requirements.txt\n      - run: python app_daily_ratings.py\n        env:\n          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}\nThe service account’s JSON key goes in the repo’s Settings → Secrets and variables → Actions as GCP_SA_KEY. GitHub hands it to the script at run time and hides it in the logs, so it never appears in the code.\nTwo details to know:\n\nScheduled workflows only run from the default branch (usually main), so nothing happens until the file is merged there.\nThe run takes under a minute, which is well inside the free Actions allowance, even for a private repo."
+  },
+  {
+    "objectID": "post2.html#making-it-trustworthy",
+    "href": "post2.html#making-it-trustworthy",
+    "title": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets",
+    "section": "Making it trustworthy",
+    "text": "Making it trustworthy\nA daily dataset is only useful if every row can be trusted. Four small rules do most of the work:\n\n\n\n\n\n\n\n\nRule\nWhat it prevents\nExample\n\n\n\n\nRetry each source 3 times\nA one-off timeout costing a day of data\nApple times out at 00:00:05; the retry 10 seconds later succeeds\n\n\nAll or nothing\nHalf-filled days\nGoogle Play fails 3 times: nothing is written, the run goes red, and GitHub emails me\n\n\nSkip duplicates\nDouble rows from re-runs\nI click “Run workflow” twice on the same day; the second run sees both rows and adds nothing\n\n\nCheck the header first\nNumbers landing in the wrong columns\nSomeone swaps two columns; the script refuses to write until the header matches again\n\n\n\nThe fix for a missed day is always the same: click Run workflow before the UTC day ends. The duplicate check means it only fills in what’s missing."
+  },
+  {
+    "objectID": "post2.html#what-i-learned",
+    "href": "post2.html#what-i-learned",
+    "title": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets",
+    "section": "What I learned",
+    "text": "What I learned\nRatings are local, and stores disagree on what “local” means. Each App Store country has its own ratings: 11,368 in the US, 7,283 in Germany, 334 in Japan. Google Play is only half local. The rating changes by country (4.58 US, 4.23 Germany, 3.75 Japan), but every country’s page shows the same worldwide count of 11,001. So my Google Play row pairs the US rating with the worldwide count, the same pairing the Play page itself shows. A country-by-country Play count simply doesn’t exist.\n“The caller does not have permission” means the login worked. My first real run failed with a 403 error. The key was fine and the API was on. I just hadn’t shared the sheet with the service account’s email address. One click on Share fixed it.\nScheduled doesn’t mean punctual. Midnight UTC is one of GitHub’s busiest times, so runs often start 5–30 minutes late. That’s why the Date column records the day the run actually happened, not the day it was meant to.\nTest with a dry run first. A --dry-run flag that fetches and prints the rows without touching the sheet let me check the store data before any Google setup existed. When the real run failed, I already knew the problem was on the Sheets side."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Preston Rattle",
     "section": "",
-    "text": "Preston Rattle\n\n\n\nAnalytics & Data Science\n\n\n  \n    About Me\n    Background & interests\n  \n  \n    Resume\n    Experience & skills\n  \n  \n    Latest Post\n    Post #1"
+    "text": "Preston Rattle\n\n\n\nAnalytics & Data Science\n\n\n  \n    About Me\n    Background & interests\n  \n  \n    Resume\n    Experience & skills\n  \n  \n    Latest Post\n    Daily app ratings"
   },
   {
     "objectID": "post1.html",

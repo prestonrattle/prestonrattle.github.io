@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-09-30">
+<meta name="description" content="A small nightly job that records an app’s star rating and rating count from the App Store and Google Play into a Google Sheet.">
 
-<title>Resume – Preston Rattle</title>
+<title>Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets – Preston Rattle</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +27,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -84,7 +121,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -110,7 +147,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./resume.html" aria-current="page"> 
+    <a class="nav-link" href="./resume.html"> 
 <span class="menu-text">Resume</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -138,22 +175,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul>
-  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#experience" id="toc-experience" class="nav-link" data-scroll-target="#experience">Experience</a></li>
-  <li><a href="#skills" id="toc-skills" class="nav-link" data-scroll-target="#skills">Skills</a></li>
-  <li><a href="#education" id="toc-education" class="nav-link" data-scroll-target="#education">Education</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <script>
@@ -278,14 +301,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Resume</h1>
+<h1 class="title">Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets</h1>
 </div>
 
+<div>
+  <div class="description">
+    A small nightly job that records an app’s star rating and rating count from the App Store and Google Play into a Google Sheet.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 30, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -295,74 +329,233 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </header>
 
 
+<p>Every night at midnight UTC, a small Python script records the Specialized app’s star rating and rating count from the App Store and Google Play, and adds two rows to a Google Sheet. It runs free on GitHub Actions and needs no server.</p>
+<section id="the-goal" class="level2">
+<h2 class="anchored" data-anchor-id="the-goal">The goal</h2>
+<p>App store ratings change slowly, and neither store keeps a public history. If you want a trend line, you have to record it yourself, every day. I wanted two rows a day, one per store:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Source</th>
+<th>Rating</th>
+<th>Rating Count</th>
+<th>Country</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9/30/2026</td>
+<td>app store</td>
+<td>4.73583</td>
+<td>11368</td>
+<td>US</td>
+</tr>
+<tr class="even">
+<td>9/30/2026</td>
+<td>google play</td>
+<td>4.577777862548828</td>
+<td>11001</td>
+<td>US</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><a href="https://www.linkedin.com/in/prestonrattle/" target="_blank" rel="noopener">LinkedIn</a></li>
-<li><a href="resume.pdf" target="_blank" rel="noopener">Resume PDF</a></li>
-</ul>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>Analytics Manager with 7+ years in global ecommerce and marketing analytics. I lead data science, analytics, &amp; omnichannel measurement, turning questions into executive decisions ($2M revenue leakage recovered). I build self-serve analytics practices and teams.</p>
-</section>
-<section id="experience" class="level2">
-<h2 class="anchored" data-anchor-id="experience">Experience</h2>
-<p><strong>Global Digital - Analytics Manager</strong><br>
-<span class="role-meta">Specialized Bicycle Components — March 2026 - Present</span></p>
-<ul>
-<li>Guiding the analytics practice for Global Digital and Specialized more broadly.</li>
-</ul>
-<p><strong>Global Digital - Senior Data Analyst</strong><br>
-<span class="role-meta">Specialized Bicycle Components — October 2022 - March 2026</span></p>
-<ul>
-<li>Architected ecommerce tracking across 30+ countries and built product datasets from 10+ sources for end-to-end supply chain visibility.</li>
-<li>Found marketing subscribers had +47% higher LTV, shifting business focus toward subscription growth.</li>
-<li>Cut manual reporting 50% by building self-serve reports and documentation.</li>
-<li>Uncovered $2M in annual revenue leakage; findings presented to the CDO led to reversal.</li>
-<li>Connected online behavior to retail purchases, giving leadership their first omnichannel view.</li>
-</ul>
-<p><strong>Global Ecommerce - Web Analyst</strong><br>
-<span class="role-meta">Specialized Bicycle Components — August 2021 - October 2022</span></p>
-<ul>
-<li>Partnered with data engineers to build data models for new datasets.</li>
-<li>Ran market research that informed a new product’s launch strategy.</li>
-<li>Automated manual processes, cutting $100k in annual OPEX.</li>
-</ul>
-<p><strong>Digital Analyst</strong><br>
-<span class="role-meta">Tinuiti — September 2020 - July 2021</span></p>
-<ul>
-<li>Principal analyst for clients ranging from $100M to $10B in annual revenue.</li>
-<li>Built measurement plans and reusable analyses for the broader analytics team.</li>
-<li>Guided marketing experiments to measure true incrementality of spend.</li>
-</ul>
-<p><strong>Associate Digital Analyst</strong><br>
-<span class="role-meta">Tinuiti — March 2019 - September 2020</span></p>
-<ul>
-<li>Based in Philadelphia, PA.</li>
+<li><strong>Date</strong> is the UTC day the data was collected.</li>
+<li><strong>Rating</strong> is kept at full precision. You can always round later, but you can’t get lost decimals back.</li>
+<li><strong>Rating Count</strong> is the number of star ratings, not written reviews. Neither store publishes a comparable count of written reviews.</li>
 </ul>
 </section>
-<section id="skills" class="level2">
-<h2 class="anchored" data-anchor-id="skills">Skills</h2>
+<section id="how-it-fits-together" class="level2">
+<h2 class="anchored" data-anchor-id="how-it-fits-together">How it fits together</h2>
+<p><img src="images/app-ratings-pipeline.svg" class="img-fluid" alt="Diagram: GitHub Actions starts a Python script at 00:00 UTC; the script fetches the rating and rating count from the App Store and Google Play, then appends two rows to a Google Sheet."></p>
+<p>GitHub starts the job at midnight UTC. The script reads each store’s public data, then writes both rows to the sheet through the Google Sheets API.</p>
+</section>
+<section id="getting-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>
+<p>The two stores needed completely different approaches. Apple has a public API. Google has none, but its store page contains the numbers in a machine-readable form.</p>
+<section id="app-store-a-public-lookup-api" class="level3">
+<h3 class="anchored" data-anchor-id="app-store-a-public-lookup-api">App Store: a public lookup API</h3>
+<p>Apple’s iTunes Search API returns an app’s details as JSON, with no key or login. You pass the app’s ID (the number at the end of its App Store URL) and a country code:</p>
+<pre><code>https://itunes.apple.com/lookup?id=1587051382&amp;country=us</code></pre>
+<p>The response has the two fields I need:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"resultCount"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"results"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"trackName"</span><span class="fu">:</span> <span class="st">"Specialized"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"averageUserRating"</span><span class="fu">:</span> <span class="fl">4.73583</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"userRatingCount"</span><span class="fu">:</span> <span class="dv">11368</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">]</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In Python, that’s a single request:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>resp <span class="op">=</span> requests.get(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://itunes.apple.com/lookup"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span>{<span class="st">"id"</span>: <span class="dv">1587051382</span>, <span class="st">"country"</span>: <span class="st">"us"</span>},</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    timeout<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> resp.json()[<span class="st">"results"</span>][<span class="dv">0</span>]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(app[<span class="st">"averageUserRating"</span>], app[<span class="st">"userRatingCount"</span>])  <span class="co"># 4.73583 11368</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="google-play-structured-data-in-the-page" class="level3">
+<h3 class="anchored" data-anchor-id="google-play-structured-data-in-the-page">Google Play: structured data in the page</h3>
+<p>Google Play has no public ratings API. But every app page includes a small block of <a href="https://schema.org/AggregateRating">schema.org</a> JSON that search engines read, and the rating is in it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> type=</span><span class="st">"application/ld+json"</span><span class="dt">&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"@type"</span><span class="op">:</span> <span class="st">"SoftwareApplication"</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"name"</span><span class="op">:</span> <span class="st">"Specialized"</span><span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"aggregateRating"</span><span class="op">:</span> {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ratingValue"</span><span class="op">:</span> <span class="st">"4.577777862548828"</span><span class="op">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ratingCount"</span><span class="op">:</span> <span class="st">"11001"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The script downloads the page for the US store (<code>gl=US</code>) and reads that block:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json, re, requests</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>html <span class="op">=</span> requests.get(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://play.google.com/store/apps/details"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span>{<span class="st">"id"</span>: <span class="st">"com.specialized.android"</span>, <span class="st">"hl"</span>: <span class="st">"en_US"</span>, <span class="st">"gl"</span>: <span class="st">"US"</span>},</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    headers<span class="op">=</span>{<span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0"</span>},</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    timeout<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>).text</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> block <span class="kw">in</span> re.findall(<span class="vs">r'&lt;script type="application/ld</span><span class="ch">\+</span><span class="vs">json"</span><span class="pp">[^&gt;]</span><span class="op">*</span><span class="vs">&gt;</span><span class="kw">(</span><span class="dv">.</span><span class="op">*?</span><span class="kw">)</span><span class="vs">&lt;/script&gt;'</span>, html, re.S):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.loads(block)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> data.get(<span class="st">"@type"</span>) <span class="op">==</span> <span class="st">"SoftwareApplication"</span>:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        rating <span class="op">=</span> data[<span class="st">"aggregateRating"</span>]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(rating[<span class="st">"ratingValue"</span>], rating[<span class="st">"ratingCount"</span>])  <span class="co"># 4.5777... 11001</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Reading the page is less stable than an official API, so the script checks what it finds. If the block is missing or the numbers look wrong, it fails loudly instead of writing bad data.</p>
+</section>
+</section>
+<section id="writing-to-google-sheets" class="level2">
+<h2 class="anchored" data-anchor-id="writing-to-google-sheets">Writing to Google Sheets</h2>
+<p>Reading the stores needs no login, because the data is public. Writing to a private Google Sheet at midnight, with nobody logged in, needs three things set up once:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Piece</th>
+<th>What it is</th>
+<th>Why it’s needed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Google Cloud project</td>
+<td>A free container for API usage</td>
+<td>Google ties every API request to a project</td>
+</tr>
+<tr class="even">
+<td>Google Sheets API</td>
+<td>The entry point programs use to read and write Sheets</td>
+<td>Every Google API is off by default and has to be switched on per project</td>
+</tr>
+<tr class="odd">
+<td>Service account</td>
+<td>A robot Google account with a JSON key as its password</td>
+<td>Something has to log in, and it shouldn’t be your personal account</td>
+</tr>
+</tbody>
+</table>
+<p>A new service account can’t see anything. You give it access by sharing the sheet with its email address (something like <code>sheets-writer@my-project.iam.gserviceaccount.com</code>) as an Editor, exactly as you would with a person. It gets that one sheet and nothing else in your Drive.</p>
+<p>With the key in hand, the <a href="https://docs.gspread.org/">gspread</a> library makes the write short:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gspread, json, os</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> gspread.service_account_from_dict(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    json.loads(os.environ[<span class="st">"GCP_SA_KEY"</span>]),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    scopes<span class="op">=</span>[<span class="st">"https://www.googleapis.com/auth/spreadsheets"</span>],</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>sheet <span class="op">=</span> client.open_by_key(<span class="st">"YOUR_SHEET_ID"</span>).worksheet(<span class="st">"Sheet1"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>sheet.append_rows(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    [[<span class="st">"2026-09-30"</span>, <span class="st">"app store"</span>, <span class="fl">4.73583</span>, <span class="dv">11368</span>, <span class="st">"US"</span>],</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>     [<span class="st">"2026-09-30"</span>, <span class="st">"google play"</span>, <span class="fl">4.577777862548828</span>, <span class="dv">11001</span>, <span class="st">"US"</span>]],</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    value_input_option<span class="op">=</span><span class="st">"USER_ENTERED"</span>,  <span class="co"># so "2026-09-30" becomes a real date</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>USER_ENTERED</code> tells Sheets to treat the values as if typed by hand. That means the date is stored as a real date you can sort and chart, not as text.</p>
+</section>
+<section id="running-it-every-night" class="level2">
+<h2 class="anchored" data-anchor-id="running-it-every-night">Running it every night</h2>
+<p>GitHub Actions can run a script on a schedule, on GitHub’s own machines, for free. The whole job is one file in the repo at <code>.github/workflows/</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> App daily ratings</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">schedule</span><span class="kw">:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">cron</span><span class="kw">:</span><span class="at"> </span><span class="st">"0 0 * * *"</span><span class="co">   # every day at 00:00 UTC</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span><span class="co">       # adds a "Run workflow" button for manual runs</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">collect</span><span class="kw">:</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v7</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v7</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">"3.11"</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> pip install -r requirements.txt</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python app_daily_ratings.py</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">GCP_SA_KEY</span><span class="kw">:</span><span class="at"> ${{ secrets.GCP_SA_KEY }}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The service account’s JSON key goes in the repo’s <strong>Settings → Secrets and variables → Actions</strong> as <code>GCP_SA_KEY</code>. GitHub hands it to the script at run time and hides it in the logs, so it never appears in the code.</p>
+<p>Two details to know:</p>
 <ul>
-<li><strong>Languages &amp; SQL</strong>: SQL (BigQuery, Redshift, Snowflake), Python, R</li>
-<li><strong>BI &amp; Visualization</strong>: Tableau, Excel</li>
-<li><strong>Web &amp; Marketing Analytics</strong>: Google Analytics, Google Tag Manager, Google Ads, Meta, DV360, Klaviyo</li>
-<li><strong>Data &amp; Experimentation</strong>: Data pipelines &amp; modeling, A/B testing &amp; incrementality measurement, data governance &amp; documentation</li>
-<li><strong>Collaboration</strong>: Jira, Confluence</li>
+<li>Scheduled workflows only run from the default branch (usually <code>main</code>), so nothing happens until the file is merged there.</li>
+<li>The run takes under a minute, which is well inside the free Actions allowance, even for a private repo.</li>
 </ul>
 </section>
-<section id="education" class="level2">
-<h2 class="anchored" data-anchor-id="education">Education</h2>
-<p><strong>University of Oregon</strong><br>
-<span class="role-meta">2016</span></p>
-<ul>
-<li>Major: Business Administration</li>
-<li>Major: French</li>
-<li>Minor: English</li>
-</ul>
-<p><strong>Université Jean Moulin Lyon 3</strong><br>
-<span class="role-meta">2013</span></p>
-<ul>
-<li>Focus: Business</li>
-</ul>
+<section id="making-it-trustworthy" class="level2">
+<h2 class="anchored" data-anchor-id="making-it-trustworthy">Making it trustworthy</h2>
+<p>A daily dataset is only useful if every row can be trusted. Four small rules do most of the work:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th>What it prevents</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Retry each source 3 times</strong></td>
+<td>A one-off timeout costing a day of data</td>
+<td>Apple times out at 00:00:05; the retry 10 seconds later succeeds</td>
+</tr>
+<tr class="even">
+<td><strong>All or nothing</strong></td>
+<td>Half-filled days</td>
+<td>Google Play fails 3 times: nothing is written, the run goes red, and GitHub emails me</td>
+</tr>
+<tr class="odd">
+<td><strong>Skip duplicates</strong></td>
+<td>Double rows from re-runs</td>
+<td>I click “Run workflow” twice on the same day; the second run sees both rows and adds nothing</td>
+</tr>
+<tr class="even">
+<td><strong>Check the header first</strong></td>
+<td>Numbers landing in the wrong columns</td>
+<td>Someone swaps two columns; the script refuses to write until the header matches again</td>
+</tr>
+</tbody>
+</table>
+<p>The fix for a missed day is always the same: click <strong>Run workflow</strong> before the UTC day ends. The duplicate check means it only fills in what’s missing.</p>
+</section>
+<section id="what-i-learned" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-learned">What I learned</h2>
+<p><strong>Ratings are local, and stores disagree on what “local” means.</strong> Each App Store country has its own ratings: 11,368 in the US, 7,283 in Germany, 334 in Japan. Google Play is only half local. The rating changes by country (4.58 US, 4.23 Germany, 3.75 Japan), but every country’s page shows the same worldwide count of 11,001. So my Google Play row pairs the US rating with the worldwide count, the same pairing the Play page itself shows. A country-by-country Play count simply doesn’t exist.</p>
+<p><strong>“The caller does not have permission” means the login worked.</strong> My first real run failed with a 403 error. The key was fine and the API was on. I just hadn’t shared the sheet with the service account’s email address. One click on Share fixed it.</p>
+<p><strong>Scheduled doesn’t mean punctual.</strong> Midnight UTC is one of GitHub’s busiest times, so runs often start 5–30 minutes late. That’s why the Date column records the day the run actually happened, not the day it was meant to.</p>
+<p><strong>Test with a dry run first.</strong> A <code>--dry-run</code> flag that fetches and prints the rows without touching the sheet let me check the store data before any Google setup existed. When the real run failed, I already knew the problem was on the Sheets side.</p>
 
 
 </section>

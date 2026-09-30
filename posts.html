@@ -179,7 +179,7 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-posts">    
         <li>
-    <a class="dropdown-item" href="./post1.html">
+    <a class="dropdown-item" href="./post2.html">
  <span class="dropdown-text">Latest Post</span></a>
   </li>  
         <li>
@@ -347,7 +347,24 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1785715200000" data-listing-file-modified-sort="1790438087682" data-listing-date-modified-sort="1788739200000" data-listing-reading-time-sort="1" data-listing-word-count-sort="27">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1790726400000" data-listing-file-modified-sort="1790804654918" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1398">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./post2.html" class="no-external">Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets</a>
+</h3>
+<div class="delink listing-description"><a href="./post2.html" class="no-external">
+<p>A small nightly job that records an app’s star rating and rating count from the App Store and Google Play into a Google Sheet.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./post2.html" class="no-external">
+<div class="listing-date">
+Sep 30, 2026
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1785715200000" data-listing-file-modified-sort="1790804654918" data-listing-date-modified-sort="1788739200000" data-listing-reading-time-sort="1" data-listing-word-count-sort="27">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./post1.html" class="no-external">Post #1</a>
@@ -376,13 +393,13 @@ Aug 3, 2026
       toggle.removeAttribute('role');
     }
 
-    var recentPostLink = document.querySelector('a.dropdown-item[href$="post1.html"]');
+    var recentPostLink = document.querySelector('a.dropdown-item[href$="post2.html"]');
     if (recentPostLink) {
       var textEl = recentPostLink.querySelector('.dropdown-text');
       if (textEl) {
         textEl.innerHTML =
           '<span class="dropdown-text-primary">Latest Post</span>' +
-          '<span class="dropdown-text-secondary">Post #1</span>';
+          '<span class="dropdown-text-secondary">Daily app ratings</span>';
       }
     }
   });
