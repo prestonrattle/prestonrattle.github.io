@@ -20,7 +20,7 @@ website:
         text: Resume
       - text: "Posts"
         menu:
-          - href: post1.qmd
+          - href: post2.qmd
             text: "Latest Post"
           - href: posts.qmd
             text: "All Posts"

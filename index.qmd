@@ -21,9 +21,9 @@ Analytics & Data Science
     <span class="home-card-title">Resume</span>
     <span class="home-card-desc">Experience &amp; skills</span>
   </a>
-  <a class="home-card" href="./post1.html">
+  <a class="home-card" href="./post2.html">
     <span class="home-card-title">Latest Post</span>
-    <span class="home-card-desc">Post #1</span>
+    <span class="home-card-desc">Daily app ratings</span>
   </a>
 </div>
 ```
