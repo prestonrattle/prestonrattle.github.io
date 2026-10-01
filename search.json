@@ -32,7 +32,14 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets\n\n\nA small nightly job that records an app’s star rating and rating count from the App Store and Google Play into a Google Sheet.\n\n\n\n\n\nSep 30, 2026\n\n\n\n\n\n\n\nPost #1\n\n\n\n\n\n\n\n\nAug 3, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets\n\n\nA small nightly job that records an app’s star rating and rating count from the App Store and Google Play into a Google Sheet.\n\n\n\n\n\nSep 30, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Preston Rattle",
+    "section": "",
+    "text": "Preston Rattle\n\n\n\nAnalytics & Data Science\n\n\n  \n    About Me\n    Background & interests\n  \n  \n    Resume\n    Experience & skills\n  \n  \n    Latest Post\n    Daily app ratings"
   },
   {
     "objectID": "post2.html",
@@ -89,20 +96,6 @@
     "title": "Tracking App Store Ratings Daily with Python, GitHub Actions and Google Sheets",
     "section": "What I learned",
     "text": "What I learned\nRatings are local, and stores disagree on what “local” means. Each App Store country has its own ratings: 11,368 in the US, 7,283 in Germany, 334 in Japan. Google Play is only half local. The rating changes by country (4.58 US, 4.23 Germany, 3.75 Japan), but every country’s page shows the same worldwide count of 11,001. So my Google Play row pairs the US rating with the worldwide count, the same pairing the Play page itself shows. A country-by-country Play count simply doesn’t exist.\n“The caller does not have permission” means the login worked. My first real run failed with a 403 error. The key was fine and the API was on. I just hadn’t shared the sheet with the service account’s email address. One click on Share fixed it.\nScheduled doesn’t mean punctual. Midnight UTC is one of GitHub’s busiest times, so runs often start 5–30 minutes late. That’s why the Date column records the day the run actually happened, not the day it was meant to.\nTest with a dry run first. A --dry-run flag that fetches and prints the rows without touching the sheet let me check the store data before any Google setup existed. When the real run failed, I already knew the problem was on the Sheets side."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Preston Rattle",
-    "section": "",
-    "text": "Preston Rattle\n\n\n\nAnalytics & Data Science\n\n\n  \n    About Me\n    Background & interests\n  \n  \n    Resume\n    Experience & skills\n  \n  \n    Latest Post\n    Daily app ratings"
-  },
-  {
-    "objectID": "post1.html",
-    "href": "post1.html",
-    "title": "Post #1",
-    "section": "",
-    "text": "This is your first post. Replace this with real content — code, charts, and analysis all render natively in Quarto.\n\nimport pandas as pd\nprint(\"Hello from Quarto!\")\n\nHello from Quarto!"
   },
   {
     "objectID": "about.html",
